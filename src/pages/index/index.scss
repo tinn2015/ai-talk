@@ -1,0 +1,12 @@
+.index {
+    height: 100vh;
+}
+
+.input-box {
+    height: 140px
+}
+
+.chat-box {
+    height: calc(100% - 140px);
+    border: 1px solid red
+}

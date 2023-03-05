@@ -4,6 +4,7 @@ import { Provider } from 'mobx-react'
 import counterStore from './store/counter'
 
 import './app.scss'
+import './assets/base.scss'
 
 const store = {
   counterStore

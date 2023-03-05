@@ -1,18 +1,13 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
+import AudioInput from './components/audioInput/audioInput'
+import TextInput from './components/textInput/textInput'
+import inputStore from '../../store/input'
 
 import './index.scss'
 
 type PageStateProps = {
-  store: {
-    counterStore: {
-      counter: number,
-      increment: Function,
-      decrement: Function,
-      incrementAsync: Function
-    }
-  }
 }
 
 interface Index {
@@ -30,31 +25,18 @@ class Index extends Component<PropsWithChildren> {
 
   componentDidHide () { }
 
-  increment = () => {
-    const { counterStore } = this.props.store
-    counterStore.increment()
-  }
-
-  decrement = () => {
-    const { counterStore } = this.props.store
-    counterStore.decrement()
-  }
-
-  incrementAsync = () => {
-    const { counterStore } = this.props.store
-    counterStore.incrementAsync()
+  toggleInputType () {
+    inputStore.toggleInputType()
   }
 
   render () {
-    const { counterStore: { counter } } = this.props.store
+    const { audioInput } = inputStore
     return (
       <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-
-        <Button onTouchStart={() => {console.log('touch start')}} onTouchEnd={() => {console.log('touch end')}}>touch</Button>
+        <View className='chat-box'></View>
+        <View className='input-box'>
+          {audioInput ? <AudioInput toggleInputType={this.toggleInputType} /> : <TextInput toggleInputType={this.toggleInputType} />}
+        </View>
       </View>
     )
   }

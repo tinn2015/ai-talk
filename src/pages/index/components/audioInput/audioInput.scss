@@ -1,0 +1,10 @@
+.audio-mask {
+  border: 1px solid #2196F3;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 1000;
+	background: rgba(0,0,0,0.5);
+}
