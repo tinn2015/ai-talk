@@ -23,5 +23,5 @@
     ]
   },
   "include": ["./src", "./types"],
-  "compileOnSave": false
+  "compileOnSave": true
 }

@@ -1,7 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import {uploadAudio} from '@/utils/http'
+import { audioAsr } from '@/utils/http'
 import { observer, inject } from 'mobx-react'
 
 import './audioInput.scss'

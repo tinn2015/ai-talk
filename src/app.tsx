@@ -1,5 +1,7 @@
 import { Component, PropsWithChildren } from 'react'
 import { Provider } from 'mobx-react'
+import Taro from '@tarojs/taro'
+import {login} from '@/utils/http'
 
 import counterStore from './store/counter'
 
@@ -11,7 +13,14 @@ const store = {
 }
 
 class App extends Component<PropsWithChildren> {
-  componentDidMount () {}
+  componentDidMount () {
+    Taro.login().then((res) => {
+      console.log(res)
+      login({code: res.code})
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
   componentDidShow () {}
 
