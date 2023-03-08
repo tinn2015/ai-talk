@@ -5,11 +5,11 @@ interface UploadAudioOptions {
   data: Record<string, string>;
 }
 
-const baseUrl = "http://api.itso123.com/v2";
+const baseUrl = "https://api.itso123.com/v2";
 
 // 登录
 export const login = (options) => {
-  const url = baseUrl + "/chatbot/dialog/completions";
+  const url = baseUrl + "/chatbot/me/login";
   return _request({ url, method: "POST" }, options);
 };
 
@@ -72,7 +72,7 @@ function _request(config: { url: string; method: Method }, options: any) {
         Authorization: Taro.getStorageSync("Authorization"),
       },
       success: (res) => {
-        resolve(res);
+        resolve(res.data);
       },
       fail: (err) => {
         reject(err);

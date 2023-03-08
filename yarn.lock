@@ -8773,10 +8773,10 @@ mobx-react@^6.1.4:
   dependencies:
     mobx-react-lite "^2.2.0"
 
-mobx@^4.8.0:
-  version "4.15.7"
-  resolved "https://registry.npmmirror.com/mobx/-/mobx-4.15.7.tgz#933281268c3b4658b6cf2526e872cf78ea48ab95"
-  integrity sha512-X4uQvuf2zYKHVO5kRT5Utmr+J9fDnRgxWWnSqJ4oiccPTQU38YG+/O3nPmOhUy4jeHexl7XJJpWDBgEnEfp+8w==
+mobx@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.npmmirror.com/mobx/-/mobx-6.8.0.tgz#59051755fdb5c8a9f3f2e0a9b6abaf86bab7f843"
+  integrity sha512-+o/DrHa4zykFMSKfS8Z+CPSEg5LW9tSNGTuN8o6MF1GKxlfkSHSeJn5UtgxvPkGgaouplnrLXCF+duAsmm6FHQ==
 
 ms@2.0.0:
   version "2.0.0"

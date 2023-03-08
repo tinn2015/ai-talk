@@ -4,31 +4,20 @@ import Taro from "@tarojs/taro";
 import { login } from "@/utils/http";
 
 import counterStore from "./store/counter";
+import chatStore from "./store/chat";
+import loginStore from "./store/login";
 
 import "./app.scss";
 import "./assets/base.scss";
 
 const store = {
   counterStore,
+  loginStore,
+  chatStore
 };
 
 class App extends Component<PropsWithChildren> {
   componentDidMount() {
-    Taro.checkSession({
-      success: () => {
-        console.log('checkSession success')
-      },
-      fail: () => {
-        Taro.login()
-        .then((res) => {
-          console.log(res);
-          login({ code: res.code });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      }
-    })
   }
 
   componentDidShow() {}

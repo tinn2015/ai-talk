@@ -1,11 +1,14 @@
 import { Component, PropsWithChildren } from 'react'
-import { View, Button, Text, Input } from '@tarojs/components'
+import { View, Button, Text, Input, TaroEvent } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
+import {ChatStoreType} from '@/store/chat'
 
 import './textInput.scss'
 
 type PageStateProps = {
-  toggleInputType: () => void
+  store: {
+    chatStore: ChatStoreType
+  }
 }
 
 interface Index {
@@ -23,14 +26,24 @@ class Index extends Component<PageStateProps> {
 
   componentDidHide () { }
 
+  getInputValue (e:TaroEvent<EventTarget>) {
+    const value = e.detail.value
+    console.log(value)
+  }
+
+  textSend () {
+    console.log(this.props.store.chatStore.inputType)
+  }
+
   render () {
     const {toggleInputType} = this.props
     return (
       <View className='index flex'>
         <View onClick={toggleInputType}>icon</View>
         <View>
-          <Input className='input' />
+          <Input type='text' className='input' onInput={(e) => {this.getInputValue(e)}} />
         </View>
+        <Button onClick={() => {this.textSend()}}>发送</Button>
       </View>
     )
   }
