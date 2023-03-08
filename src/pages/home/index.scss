@@ -1,0 +1,67 @@
+.home {
+    position: relative;
+    height: 100vh;
+    box-sizing: border-box;
+}
+.robot-bg {
+    width: 750px;
+    height: 1040px;
+    background-image: url(../../assets/robot-bg2.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+.mask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 750px;
+    height: 400px;
+    // border: 1px solid green;
+    // background: rgba(255,255,255,0.4);
+    // background: linear-gradient(180deg, #FFFFFF 10%, #FFFFFF 100%);
+    background: linear-gradient(180deg, rgba(221, 221, 221, .9) 1%, #FFFFFF 100%);
+    z-index: 20;
+}
+.slogan-box {
+    position: absolute;
+    top: 704px;
+    left: 0;
+    width: 750px;
+    height: 280px;
+    background: linear-gradient(180deg, rgba(238,238,238,0) 0%, #FFFFFF 100%);
+    z-index: 100;
+    // border: 1px solid red;
+    .box {
+        width: 700px;
+        height: 280px;
+        background: url(../../assets/slogan-box.png) no-repeat;
+        background-size: 100% 100%;
+    }
+}
+
+.btns {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    .to-chat {
+        width: 702rpx;
+        height: 120rpx;
+        background: #171717;
+        border-radius: 24rpx;
+    }
+    .to-history {
+        width: 256rpx;
+        height: 48rpx;
+        font-size: 32rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #171717;
+        line-height: 48rpx;
+    }
+}

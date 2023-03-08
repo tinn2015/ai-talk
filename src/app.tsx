@@ -13,12 +13,11 @@ import "./assets/base.scss";
 const store = {
   counterStore,
   loginStore,
-  chatStore
+  chatStore,
 };
 
 class App extends Component<PropsWithChildren> {
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   componentDidShow() {}
 
