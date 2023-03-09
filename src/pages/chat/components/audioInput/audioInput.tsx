@@ -1,12 +1,16 @@
 import { Component, PropsWithChildren } from 'react'
 import { View, Button, Text } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { audioAsr } from '@/utils/http'
 import { observer, inject } from 'mobx-react'
+import {ChatStoreType} from '@/store/chat'
+
 
 import './audioInput.scss'
 
 type PageStateProps = {
+  store: {
+    chatStore: ChatStoreType
+  },
   toggleInputType: () => void
 }
 
@@ -43,7 +47,7 @@ class Index extends Component<PageStateProps, state> {
       // duration: 10000,
       sampleRate: 16000,
       numberOfChannels: 1,
-      // encodeBitRate: 192000,
+      encodeBitRate: 48000,
       format: 'wav',
     }
     // @ts-ignore
@@ -51,11 +55,8 @@ class Index extends Component<PageStateProps, state> {
     recorderManager.onStop((res) => {
       console.log('recorder stop', res)
       const { tempFilePath } = res
-      uploadAudio({
-        filePath: tempFilePath
-      }).catch(err => {
-        console.log('err', err)
-      })
+      this.props.store.chatStore.getAudioAsr(tempFilePath)
+      
     })
     this.setState({
       recorderManager,

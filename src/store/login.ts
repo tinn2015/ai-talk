@@ -10,9 +10,8 @@ const loginStore = observable({
       Taro.login()
         .then(async (res) => {
           const result = await login({ code: res.code });
-					debugger
           if (result.data && result.data.authorization) {
-            Taro.setStorageSync("authorization", result.data.authorization);
+            Taro.setStorageSync("Authorization", result.data.authorization);
             resolve(true);
           } else {
             reject(false);

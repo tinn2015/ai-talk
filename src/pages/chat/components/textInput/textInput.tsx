@@ -9,15 +9,25 @@ type PageStateProps = {
   store: {
     chatStore: ChatStoreType
   }
+  toggleInputType: () => void
 }
 
 interface Index {
   props: PageStateProps;
+  state: {
+    value: string
+  }
 }
 
 @inject('store')
 @observer
 class Index extends Component<PageStateProps> {
+  constructor (props) {
+    super(props)
+    this.state = {
+      value: ''
+    }
+  }
   componentDidMount () { }
 
   componentWillUnmount () { }
@@ -28,18 +38,22 @@ class Index extends Component<PageStateProps> {
 
   getInputValue (e:TaroEvent<EventTarget>) {
     const value = e.detail.value
-    console.log(value)
+    this.setState({
+      value
+    })
   }
 
   textSend () {
-    console.log(this.props.store.chatStore.inputType)
+    const {value} = this.state
+    const { chatStore } = this.props.store
+    console.log(value)
+    chatStore.getChat(value)
   }
 
   render () {
-    const {toggleInputType} = this.props
     return (
       <View className='index flex'>
-        <View onClick={toggleInputType}>icon</View>
+        <View onClick={this.props.toggleInputType}>icon</View>
         <View>
           <Input type='text' className='input' onInput={(e) => {this.getInputValue(e)}} />
         </View>

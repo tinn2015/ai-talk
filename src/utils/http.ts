@@ -50,11 +50,12 @@ export const audioAsr = (options: UploadAudioOptions) => {
     Taro.uploadFile({
       url,
       filePath: options.filePath,
-      name: "file",
+      name: "recfile",
       header: {
         "Content-type": "multiply/form-data",
+        "Authorization": Taro.getStorageSync("Authorization")
       },
-      formData: options.data,
+      // formData: options.data,
       success: (res) => resolve(res),
       fail: (err) => reject(err),
     });

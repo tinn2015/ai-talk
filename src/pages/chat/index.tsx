@@ -3,11 +3,15 @@ import { View, Button, Text } from '@tarojs/components'
 import { observer, inject } from 'mobx-react'
 import AudioInput from './components/audioInput/audioInput'
 import TextInput from './components/textInput/textInput'
-import chatStore from '../../store/chat'
+import{ChatStoreType} from '@/store/chat'
+
 
 import './index.scss'
 
 type PageStateProps = {
+  store: {
+    chatStore: ChatStoreType
+  }
 }
 
 interface Index {
@@ -16,8 +20,9 @@ interface Index {
 
 @inject('store')
 @observer
-class Index extends Component<PropsWithChildren> {
-  componentDidMount () { }
+class Index extends Component<PageStateProps> {
+  componentDidMount () { 
+  }
 
   componentWillUnmount () { }
 
@@ -26,16 +31,24 @@ class Index extends Component<PropsWithChildren> {
   componentDidHide () { }
 
   toggleInputType () {
+    const {chatStore} = this.props.store
     chatStore.toggleInputType()
   }
 
   render () {
-    const { audioInput } = chatStore
+    const { audioInput, chatList } = this.props.store.chatStore
+    console.log('audioInput index', audioInput)
     return (
       <View className='index'>
-        <View className='chat-box'></View>
+        <View className='chat-box'>
+          {
+            chatList.map(chatItem => {
+              return <View>{chatItem.content}</View>
+            })
+          }
+        </View>
         <View className='input-box'>
-          {audioInput ? <AudioInput toggleInputType={this.toggleInputType} /> : <TextInput toggleInputType={this.toggleInputType} />}
+          {audioInput ? <AudioInput toggleInputType={() => {this.toggleInputType()}} /> : <TextInput toggleInputType={() => {this.toggleInputType()}} />}
         </View>
       </View>
     )
