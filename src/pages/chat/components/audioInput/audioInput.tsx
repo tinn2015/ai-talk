@@ -1,90 +1,103 @@
-import { Component, PropsWithChildren } from 'react'
-import { View, Button, Text } from '@tarojs/components'
-import Taro from '@tarojs/taro'
-import { observer, inject } from 'mobx-react'
-import {ChatStoreType} from '@/store/chat'
+import { Component, PropsWithChildren } from "react";
+import { View, Button, Text } from "@tarojs/components";
+import Taro from "@tarojs/taro";
+import { observer, inject } from "mobx-react";
+import { ChatStoreType } from "@/store/chat";
 
-
-import './audioInput.scss'
+import "./audioInput.scss";
 
 type PageStateProps = {
   store: {
-    chatStore: ChatStoreType
-  },
-  toggleInputType: () => void
-}
+    chatStore: ChatStoreType;
+  };
+  toggleInputType: () => void;
+};
 
 interface state {
   isTouchStart: boolean;
-  recorderManager: Taro.RecorderManager | null
+  recorderManager: Taro.RecorderManager | null;
 }
 
-@inject('store')
+@inject("store")
 @observer
 class Index extends Component<PageStateProps, state> {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       isTouchStart: false,
-      recorderManager: null
-    }
+      recorderManager: null,
+    };
   }
 
-  componentDidMount () { }
+  componentDidMount() {}
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  touchStart () {
+  touchStart() {
     // this.state.isTouchStart = true
-    const recorderManager = Taro.getRecorderManager()
+    const recorderManager = Taro.getRecorderManager();
     // 开始录音
     const options = {
       // duration: 10000,
       sampleRate: 16000,
       numberOfChannels: 1,
       encodeBitRate: 48000,
-      format: 'wav',
-    }
+      format: "wav",
+    };
     // @ts-ignore
-    recorderManager.start(options)
+    recorderManager.start(options);
     recorderManager.onStop((res) => {
-      console.log('recorder stop', res)
-      const { tempFilePath } = res
-      this.props.store.chatStore.getAudioAsr(tempFilePath)
-      
-    })
+      console.log("recorder stop", res);
+      const { tempFilePath } = res;
+      this.props.store.chatStore.getAudioAsr(tempFilePath);
+    });
     this.setState({
       recorderManager,
-      isTouchStart: true
-    })
+      isTouchStart: true,
+    });
   }
 
-  touchEnd () {
-    this.state.recorderManager?.stop()
+  touchEnd() {
+    this.state.recorderManager?.stop();
     this.setState({
       recorderManager: null,
-      isTouchStart: false
-    })
+      isTouchStart: false,
+    });
   }
 
-  render () {
-    const {toggleInputType} = this.props
-    const {isTouchStart} = this.state
-    // console.log('state', this.state)
+  render() {
+    const { toggleInputType } = this.props;
+    const { isTouchStart } = this.state;
     return (
-      <View className='index flex'>
-        <View onClick={toggleInputType}>icon</View>
-        <View onTouchStart={() => {this.touchStart()}} onTouchEnd={() => {this.touchEnd()}}>按住说话</View>
+      <View className='audio-input flex jc-sb ai-c'>
+        <View className='audio-icon' onClick={toggleInputType}></View>
+        <View
+          className='audio-btn flex jc-c ai-c'
+          onTouchStart={() => {
+            this.touchStart();
+          }}
+          onTouchEnd={() => {
+            this.touchEnd();
+          }}
+        >
+          按住说话
+        </View>
         <View>{isTouchStart}</View>
-        { isTouchStart && <View className='audio-mask border-box' onTouchEnd={() => {this.touchEnd()}} /> }
+        {isTouchStart && (
+          <View
+            className='audio-mask border-box'
+            onTouchEnd={() => {
+              this.touchEnd();
+            }}
+          />
+        )}
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

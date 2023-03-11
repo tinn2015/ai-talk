@@ -1,0 +1,98 @@
+.my {
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(180deg, #F2EDFF 0%, #F9F9F9 100%);
+}
+.userinfo {
+    height: 120px
+}
+.vip-block {
+    margin-top: 34px;
+    .vip-bg {
+        width: 686px;
+        height: 188px;
+        background: url(../../assets/images/my-bg1.png) center no-repeat;
+        background-size: contain;
+        position: relative;
+        .vip-label {
+            width: 230rpx;
+            height: 36rpx;
+            font-size: 24rpx;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #726060;
+            line-height: 36rpx;
+            position: absolute;
+            top: 100px;
+            left: 32px
+        }
+        .vip-btn {
+            width: 160rpx;
+            height: 68rpx;
+            background: linear-gradient(135deg, #E0A452 0%, #FFD78B 100%);
+            border-radius: 40rpx;
+            font-size: 28rpx;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #171717;
+            position: absolute;
+            top: 50px;
+            right: 32px;
+        }
+    }
+}
+
+.services {
+    width: 750px;
+    height: 500px;
+    background: url(../../assets/images/my-bg2.png) center no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    top: -30px;
+    z-index: 10;
+    .service-block {
+        width: 686px;
+        background: #FFFFFF;
+        border-radius: 24px;
+        margin-top: 62px;
+        padding: 24px 20px 48px 32px;
+    }
+    .service-item {
+        margin-top: 48px;
+    }
+    .service-title {
+        height: 48rpx;
+        font-size: 32rpx;
+        font-family: PingFangSC-Semibold, PingFang SC;
+        font-weight: 600;
+        color: #171717;
+    }
+    .service-icon {
+        width: 44px;
+        height: 44px;
+    }
+    .service-label {
+        width: 112rpx;
+        height: 44rpx;
+        font-size: 28rpx;
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #171717;
+        line-height: 44rpx;
+        margin-left: 16px;
+    }
+    .service-arrow {
+        background: url(../../assets/images/right-arrow.png) no-repeat center;
+        background-size: contain;
+        width: 44px;
+        height: 44px;
+    }
+    .tool1 {
+        background: url(../../assets/images/tool1.png) no-repeat center;
+        background-size: contain;
+    }
+    .tool2 {
+        background: url(../../assets/images/tool2.png);
+        background-size: contain;
+    }
+}

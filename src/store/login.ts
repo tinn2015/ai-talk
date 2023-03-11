@@ -1,10 +1,15 @@
-import { observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import Taro from "@tarojs/taro";
+
 import { login } from "@/utils/http";
 
-const loginStore = observable({
-  isLogin: false,
-  userInfo: {},
+export class LoginStore {
+  isLogin: boolean;
+  userInfo: {};
+  constructor() {
+    makeAutoObservable(this);
+    this.isLogin = false;
+  }
   login() {
     return new Promise((resolve, reject) => {
       Taro.login()
@@ -22,21 +27,21 @@ const loginStore = observable({
           reject(err);
         });
     });
-  },
+  }
   async getUserInfo() {
     // 获取授权状态
     // const authSetting = await Taro.getSetting();
     Taro.getUserProfile({
-			desc: "用于完善会员信息",
-			success: (res) => {
-				console.log("用户信息", res);
-			},
-			fail: (err) => {
-				console.log("用户信息 err", err);
-			},
-		});
+      desc: "用于完善会员信息",
+      success: (res) => {
+        console.log("用户信息", res);
+      },
+      fail: (err) => {
+        console.log("用户信息 err", err);
+      },
+    });
     // console.log(authSetting);
-  },
-});
+  }
+}
 
-export default loginStore;
+export default new LoginStore();

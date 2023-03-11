@@ -11,20 +11,20 @@ export default defineAppConfig({
       {
         pagePath: "pages/home/index",
         text: "首页",
-        iconPath: "assets/tabbar/default.png",
-        selectedIconPath: "assets/tabbar/active.png",
+        iconPath: "assets/tabbar/home.png",
+        selectedIconPath: "assets/tabbar/home-active.png",
       },
       {
         pagePath: "pages/find/index",
         text: "发现",
-        iconPath: "assets/tabbar/default.png",
-        selectedIconPath: "assets/tabbar/active.png",
+        iconPath: "assets/tabbar/find.png",
+        selectedIconPath: "assets/tabbar/find-active.png",
       },
       {
         pagePath: "pages/my/index",
         text: "我的",
-        iconPath: "assets/tabbar/default.png",
-        selectedIconPath: "assets/tabbar/active.png",
+        iconPath: "assets/tabbar/my.png",
+        selectedIconPath: "assets/tabbar/my-active.png",
       },
       // {
       //   pagePath: 'pages/index/index',

@@ -1,66 +1,84 @@
-import { Component, PropsWithChildren } from 'react'
-import { View, Button, Text, Input, TaroEvent } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
-import {ChatStoreType} from '@/store/chat'
+import { Component, PropsWithChildren } from "react";
+import { View, Button, Text, Input, TaroEvent } from "@tarojs/components";
+import { observer, inject } from "mobx-react";
+import { ChatStoreType } from "@/store/chat";
 
-import './textInput.scss'
+import "./textInput.scss";
 
 type PageStateProps = {
   store: {
-    chatStore: ChatStoreType
-  }
-  toggleInputType: () => void
-}
+    chatStore: ChatStoreType;
+  };
+  toggleInputType: () => void;
+};
 
 interface Index {
   props: PageStateProps;
   state: {
-    value: string
-  }
+    value: string;
+  };
 }
 
-@inject('store')
+@inject("store")
 @observer
 class Index extends Component<PageStateProps> {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      value: ''
-    }
+      value: "",
+    };
   }
-  componentDidMount () { }
+  componentDidMount() {}
 
-  componentWillUnmount () { }
+  componentWillUnmount() {}
 
-  componentDidShow () { }
+  componentDidShow() {}
 
-  componentDidHide () { }
+  componentDidHide() {}
 
-  getInputValue (e:TaroEvent<EventTarget>) {
-    const value = e.detail.value
+  getInputValue(e: TaroEvent<EventTarget>) {
+    const value = e.detail.value;
     this.setState({
-      value
-    })
+      value,
+    });
   }
 
-  textSend () {
-    const {value} = this.state
-    const { chatStore } = this.props.store
-    console.log(value)
-    chatStore.getChat(value)
+  textSend() {
+    const { value } = this.state;
+    const { chatStore } = this.props?.store;
+    console.log(value);
+    chatStore && chatStore.getChat(value);
+    this.setState({
+      value: "",
+    });
   }
 
-  render () {
+  render() {
+    const { value } = this.state;
     return (
-      <View className='index flex'>
-        <View onClick={this.props.toggleInputType}>icon</View>
-        <View>
-          <Input type='text' className='input' onInput={(e) => {this.getInputValue(e)}} />
+      <View className='text-input flex jc-c ai-c'>
+        <View className='text-icon' onClick={this.props.toggleInputType}></View>
+        <View className='text-input-box'>
+          <Input
+            type='text'
+            className='input'
+            value={value}
+            onInput={(e) => {
+              this.getInputValue(e);
+            }}
+          />
         </View>
-        <Button onClick={() => {this.textSend()}}>发送</Button>
+        <View
+          className='text-send flex jc-c ai-c'
+          onClick={() => {
+            this.textSend();
+          }}
+        >
+          发送
+        </View>
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

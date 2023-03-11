@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.fd-rr {
+    flex-direction: row-reverse;
+}
+
 .flex-1 {
     flex: 1
 }
@@ -10,8 +14,23 @@
     justify-content: center;
 }
 
+.jc-fe {
+    justify-content: flex-end;
+}
+
+.jc-fs {
+    justify-content: flex-start;
+}
+.jc-sb {
+    justify-content: space-between;
+}
+
 .ai-c {
     align-items: center;
+}
+
+.ai-fs {
+    align-items: flex-start;
 }
 
 .border-box {

@@ -1,12 +1,58 @@
 .index {
     height: 100vh;
+    background: #f2f2f2;
+    overflow: hidden;
 }
 
 .input-box {
-    height: 140px
+    margin-top: 10px;
+    min-height: 96px;
+    height: 96px;
+    padding: 28px 24px;
 }
 
 .chat-box {
-    height: calc(100% - 140px);
-    border: 1px solid red
+    height: calc(100% - 106px - 32px);
+    background: #ffffff;
+    padding: 0 24px;
+    .mr16 {
+        margin-right: 16px;
+    }
+    .ml16 {
+        margin-left: 16px;
+    }
+    .chat-item:not(:first-child) {
+        margin-top: 32px;
+    }
+}
+.chat-avatar {
+    width: 80px;
+    height: 80px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../../assets/images/my-avatar.png);
+}
+.chat-content-self {
+    max-width: 500px;
+    min-height: 80px;
+    line-height: 80px;
+    background: #4DB262;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 0 24px;
+    font-size: 32px;
+    font-family: PingFangSC-Regular, PingFang SC;
+}
+
+.chat-content-robot {
+    max-width: 500px;
+    min-height: 80px;
+    line-height: 80px;
+    background: #F2F2F2;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 0 24px;
+    font-size: 32px;
+    font-family: PingFangSC-Regular, PingFang SC;
 }

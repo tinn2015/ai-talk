@@ -1,3 +1,31 @@
-.input {
-    border: 1px solid rgb(0, 255, 145)
+.text-input {
+    height: 100%;
+    .text-input-box {
+        height: 76px;
+        width: 100%;
+        margin-left: 24px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        .input {
+            height: 76px;
+            padding: 0 15px;
+            line-height: 76px;
+        }
+    }
+}
+
+.text-icon {
+    min-width: 52px;
+    min-height: 52px;
+    background: url('../../../../assets/images/audio-icon.png') no-repeat center;
+    background-size: contain;
+}
+
+.text-send {
+    min-width: 120px;
+    min-height: 76px;
+    margin-left: 24px;
+    background: #4DB262;
+    color: #fff;
+    border-radius: 4px;
 }
