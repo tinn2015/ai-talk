@@ -2,6 +2,9 @@
     position: relative;
     height: 100vh;
     box-sizing: border-box;
+    .at-modal__content {
+        min-height: 20px;
+    }
 }
 .page-title {
     font-size: 32rpx;
@@ -61,7 +64,7 @@
 
 .btns {
     position: absolute;
-    bottom: 60px;
+    top: 1000px;
     left: 0;
     z-index: 200;
     width: 100%;

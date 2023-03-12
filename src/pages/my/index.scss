@@ -4,7 +4,41 @@
     background: linear-gradient(180deg, #F2EDFF 0%, #F9F9F9 100%);
 }
 .userinfo {
-    height: 120px
+    height: 120px;
+    margin-top: 38px;
+    margin-left: 32px;
+    position: relative;
+    .avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
+    .vip-badge {
+        background: url(../../assets/images/vip.png) center no-repeat;
+        width: 36px;
+        height: 36px;
+        background-size: contain;
+        position: absolute;
+        left: 84px;
+        top: 90px;
+        z-index: 100;
+    }
+    .info {
+        margin-left: 16px;
+        .nickname {
+            font-size: 32rpx;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #171717;
+        }
+        .tip {
+            font-size: 24rpx;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #726060;
+            margin-top: 8px;
+        }
+    }
 }
 .vip-block {
     margin-top: 34px;

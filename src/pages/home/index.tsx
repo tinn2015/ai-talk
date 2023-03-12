@@ -2,10 +2,16 @@ import { Component, PropsWithChildren } from "react";
 import { View, Button, Text, Image } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
 import Taro from "@tarojs/taro";
+import { AtModal, AtModalHeader, AtModalContent, AtModalAction } from "taro-ui";
+import { LoginStore } from "@/store/login";
 
 import "./index.scss";
 
-type PageStateProps = {};
+type PageStateProps = {
+  store: {
+    loginStore: LoginStore;
+  };
+};
 
 interface Index {
   props: PageStateProps;
@@ -17,24 +23,32 @@ interface Index {
       height: number;
       right: number;
     };
+    loginModalOpen: boolean;
   };
 }
 
 @inject("store")
 @observer
-class Index extends Component<PropsWithChildren> {
+class Index extends Component<PageStateProps> {
   constructor(props) {
     super(props);
     this.state = {
       titlePosition: {
         top: 0,
       },
+      loginModalOpen: false,
     };
   }
   componentDidMount() {
+    let { loginModalOpen } = this.state;
     const rect = Taro.getMenuButtonBoundingClientRect();
     const { top, width, height, left, right } = rect;
     console.log("mount", rect);
+    const userinfo = Taro.getStorageSync("userInfo");
+    const Authorization = Taro.getStorageSync("Authorization");
+    if (!Authorization || !userinfo) {
+      loginModalOpen = true;
+    }
     this.setState({
       titlePosition: {
         top,
@@ -43,6 +57,7 @@ class Index extends Component<PropsWithChildren> {
         left,
         right,
       },
+      loginModalOpen,
     });
   }
 
@@ -52,6 +67,17 @@ class Index extends Component<PropsWithChildren> {
 
   componentDidHide() {}
 
+  async checkLogin() {
+    const { loginStore } = this.props.store;
+    const res = await loginStore.getUserInfo();
+    if (res) {
+      this.setState({
+        loginModalOpen: false,
+      });
+    }
+    await loginStore.login();
+  }
+
   router(type: string) {
     const url = `/pages/${type}/index`;
     Taro.navigateTo({
@@ -60,7 +86,7 @@ class Index extends Component<PropsWithChildren> {
   }
 
   render() {
-    const { titlePosition } = this.state;
+    const { titlePosition, loginModalOpen } = this.state;
     return (
       <View className='home'>
         {/* <Image src='../../assets/robot-bg.png' />  */}
@@ -90,6 +116,26 @@ class Index extends Component<PropsWithChildren> {
             查看我的历史记录
           </View>
         </View>
+        <AtModal
+          isOpened={loginModalOpen}
+          // cancelText='取消'
+          // confirmText='确认'
+          // onClose={this.handleClose}
+          // onCancel={this.handleCancel}
+          // onConfirm={this.handleConfirm}
+          // content='欢迎加入京东凹凸实验室\n\r欢迎加入京东凹凸实验室'
+        >
+          <AtModalHeader>登录/注册</AtModalHeader>
+          <AtModalContent>
+            <View
+              onClick={() => {
+                this.checkLogin();
+              }}
+            >
+              微信登录
+            </View>
+          </AtModalContent>
+        </AtModal>
       </View>
     );
   }

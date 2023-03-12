@@ -1,6 +1,6 @@
 import { Component, PropsWithChildren } from "react";
 import { Provider } from "mobx-react";
-import Taro from "@tarojs/taro";
+import "taro-ui/dist/style/index.scss";
 
 import counterStore from "./store/counter";
 import chatStore from "./store/chat";

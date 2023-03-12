@@ -5,7 +5,10 @@ import { login } from "@/utils/http";
 
 export class LoginStore {
   isLogin: boolean;
-  userInfo: {};
+  userInfo: {
+    avatarUrl: string;
+    nickName: string;
+  };
   constructor() {
     makeAutoObservable(this);
     this.isLogin = false;
@@ -29,16 +32,21 @@ export class LoginStore {
     });
   }
   async getUserInfo() {
-    // 获取授权状态
-    // const authSetting = await Taro.getSetting();
-    Taro.getUserProfile({
-      desc: "用于完善会员信息",
-      success: (res) => {
-        console.log("用户信息", res);
-      },
-      fail: (err) => {
-        console.log("用户信息 err", err);
-      },
+    return new Promise((resolve, reject) => {
+      // 获取授权状态
+      Taro.getUserProfile({
+        desc: "用于完善会员信息",
+        success: (res) => {
+          console.log("用户信息", res);
+          this.userInfo = res.userInfo;
+          Taro.setStorageSync("userInfo", res.userInfo);
+          resolve(true);
+        },
+        fail: (err) => {
+          console.log("用户信息 err", err);
+          reject(false);
+        },
+      });
     });
     // console.log(authSetting);
   }
