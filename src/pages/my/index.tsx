@@ -1,6 +1,7 @@
 import { Component, PropsWithChildren } from "react";
 import { View, Button, Text, Image } from "@tarojs/components";
 import { observer, inject } from "mobx-react";
+import Taro from "@tarojs/taro";
 import { LoginStore } from "@/store/login";
 import { getMyInfo } from "@/utils/http";
 
@@ -52,6 +53,12 @@ class Index extends Component<PageStateProps> {
 
   componentDidHide() {}
 
+  routerToVip() {
+    Taro.navigateTo({
+      url: "/pages/vip/index",
+    });
+  }
+
   render() {
     const { myInfo } = this.state;
     const { isLogin, userInfo } = this.props.store.loginStore;
@@ -78,9 +85,23 @@ class Index extends Component<PageStateProps> {
               {myInfo.isvip ? `` : `皇冠VIP解锁更多权益`}
             </View>
             {myInfo.isvip ? (
-              <View className='vip-btn flex jc-c ai-c'>前往续费</View>
+              <View
+                className='vip-btn flex jc-c ai-c'
+                onClick={() => {
+                  this.routerToVip();
+                }}
+              >
+                前往续费
+              </View>
             ) : (
-              <View className='vip-btn flex jc-c ai-c'>前往开通</View>
+              <View
+                className='vip-btn flex jc-c ai-c'
+                onClick={() => {
+                  this.routerToVip();
+                }}
+              >
+                前往开通
+              </View>
             )}
           </View>
         </View>

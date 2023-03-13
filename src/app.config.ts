@@ -4,6 +4,7 @@ export default defineAppConfig({
     "pages/chat/index",
     "pages/find/index",
     "pages/my/index",
+    "pages/vip/index",
   ],
   tabBar: {
     color: "#000000",
