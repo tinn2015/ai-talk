@@ -10,6 +10,14 @@
     flex: 1
 }
 
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.fw-w {
+    flex-wrap: wrap;
+}
+
 .jc-c {
     justify-content: center;
 }
@@ -23,6 +31,10 @@
 }
 .jc-sb {
     justify-content: space-between;
+}
+
+.jc-a {
+    justify-content: space-around;
 }
 
 .ai-c {

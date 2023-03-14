@@ -49,6 +49,9 @@ class Index extends Component<PageStateProps> {
     if (!Authorization || !userinfo) {
       loginModalOpen = true;
     }
+    if (userinfo) {
+      this.props.store.loginStore.userInfo = userinfo;
+    }
     this.setState({
       titlePosition: {
         top,

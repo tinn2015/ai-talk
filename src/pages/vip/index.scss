@@ -23,6 +23,43 @@
             width: 690px;
             height: 284px;
         }
+        .item {
+            width: 120px;
+            margin-top: 60px;
+        }
+        .icon1 {
+            background-image: url(../../assets/images/vip-icon1.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            width: 82px;
+            height: 82px;
+        }
+        .icon2 {
+            background-image: url(../../assets/images/vip-icon2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            width: 82px;
+            height: 82px;
+        }
+        .icon3 {
+            background-image: url(../../assets/images/vip-icon3.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            width: 82px;
+            height: 82px;
+        }
+        .txt {
+            width: 120px;
+            font-size: 24px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 20px;
+        }
     }
     .block3 {
         height: calc(100% - 650px);
@@ -30,6 +67,61 @@
         border: 1px solid red;
         position: relative;
         top: -40px;
-        border-radius: 48px 48px 0px 0px
+        border-radius: 48px 48px 0px 0px;
+        padding: 32px 24px;
+        .title-prefix {
+            background-image: url(../../assets/images/vip-bg4.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            width: 10px;
+            height: 38px;
+        }
+        .title {
+            width: 324px;
+            font-size: 36px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #171717;
+            margin-left: 16px;
+        }
+        .product-item {
+            width: 220px;
+            height: 130px;
+            background-image: url(../../assets/images/vip-bg2.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 100% 100%;
+            margin-top: 20px
+        }
+        .product-name {
+            font-size: 32px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #171717;
+            line-height: 44px;
+        }
+        .product-price {
+            font-size: 24px;
+            font-family: PingFangSC-Regular, PingFang SC;
+            font-weight: 400;
+            color: #726060;
+            margin-top: 8px;
+        }
+        .active-product {
+            border: 1px solid #E0A452;
+            border-radius: 20px;
+        }
+        .pay-btn {
+            width: 702rpx;
+            height: 120rpx;
+            background: #171717;
+            border-radius: 24rpx;
+            margin-top: 48px;
+            font-size: 36px;
+            font-family: PingFangSC-Semibold, PingFang SC;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
     }
 }
