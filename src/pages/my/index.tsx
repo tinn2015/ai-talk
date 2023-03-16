@@ -68,7 +68,7 @@ class Index extends Component<PageStateProps> {
         <View className='userinfo'>
           <View className='flex jc-fs ai-c'>
             <Image className='avatar' src={userInfo.avatarUrl} />
-            {myInfo.isvip && <View className='vip-badge'></View>}
+            {myInfo.isvip ? <View className='vip-badge'></View> : ""}
             <View className='info'>
               <View className='nickname'>{userInfo.nickName}</View>
               <View className='tip'>

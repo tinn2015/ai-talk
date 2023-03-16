@@ -37,7 +37,8 @@ class Index extends Component<PageStateProps, state> {
 
   componentDidHide() {}
 
-  touchStart() {
+  touchStart(event) {
+    console.log("touchstart", event);
     // this.state.isTouchStart = true
     const recorderManager = Taro.getRecorderManager();
     // 开始录音
@@ -77,8 +78,8 @@ class Index extends Component<PageStateProps, state> {
         <View className='audio-icon' onClick={toggleInputType}></View>
         <View
           className='audio-btn flex jc-c ai-c'
-          onTouchStart={() => {
-            this.touchStart();
+          onTouchStart={(event) => {
+            this.touchStart(event);
           }}
           onTouchEnd={() => {
             this.touchEnd();
@@ -93,7 +94,11 @@ class Index extends Component<PageStateProps, state> {
             onTouchEnd={() => {
               this.touchEnd();
             }}
-          />
+          >
+            <View className='bottom-mask flex jc-c ai-c'>
+              <View className='voice-icon'></View>
+            </View>
+          </View>
         )}
       </View>
     );

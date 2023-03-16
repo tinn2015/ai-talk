@@ -25,6 +25,12 @@ export const getMyInfo = (options) => {
   return _request({ url, method: "GET" }, options);
 };
 
+// 创建订单
+export const createOrder = (options) => {
+  const url = baseUrl + "/chatbot/me/create_order";
+  return _request({ url, method: "POST" }, options);
+};
+
 // 完成我的历史对话
 export const getMyHistory = (options) => {
   const url = baseUrl + "/chatbot/history/getdata";

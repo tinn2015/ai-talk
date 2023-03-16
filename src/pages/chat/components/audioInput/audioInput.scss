@@ -1,12 +1,26 @@
 .audio-mask {
-  border: 1px solid #2196F3;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100vh;
 	z-index: 1000;
-	background: rgba(0,0,0,0.5);
+	background: rgba(0,0,0,0.7);
+	.bottom-mask {
+		height: 250px;
+		background: url(../../../../assets/images/audio-mask-bg.png) no-repeat center;
+		background-size: 100% 100%;
+		position: absolute;
+		bottom: 0;
+		z-index: 1000;
+		width: 100%
+	}
+	.voice-icon {
+		background: url(../../../../assets/images/voice-icon.png) no-repeat center;
+		background-size: 100% 100%;
+		width: 30px;
+		height: 44px;
+	}
 }
 
 .audio-input {

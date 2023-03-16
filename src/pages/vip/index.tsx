@@ -1,8 +1,9 @@
 import { Component, PropsWithChildren } from "react";
 import { View, Button, Text, Image } from "@tarojs/components";
+import Taro from "@tarojs/taro";
 import { observer, inject } from "mobx-react";
 import { LoginStore } from "@/store/login";
-import { getMyInfo } from "@/utils/http";
+import { createOrder, getMyInfo } from "@/utils/http";
 
 import "./index.scss";
 
@@ -61,6 +62,26 @@ class Index extends Component<PageStateProps> {
     });
   }
 
+  pay() {
+    const { activeProductId } = this.state;
+    createOrder({ product_id: activeProductId }).then((res) => {
+      const { prepay_id } = res;
+      Taro.requestPayment({
+        timeStamp: `${Date.now()}`,
+        nonceStr: "",
+        package: prepay_id,
+        signType: "MD5",
+        paySign: "",
+        success: (res1) => {
+          console.log("success", res1);
+        },
+        fail: (res2) => {
+          console.log("fail", res2);
+        },
+      });
+    });
+  }
+
   render() {
     const { myInfo, activeProductId } = this.state;
     const { isLogin, userInfo } = this.props.store.loginStore;
@@ -112,7 +133,14 @@ class Index extends Component<PageStateProps> {
                 </View>
               ))}
           </View>
-          <View className='pay-btn flex jc-c ai-c'>开通</View>
+          <View
+            className='pay-btn flex jc-c ai-c'
+            onClick={() => {
+              this.pay();
+            }}
+          >
+            开通
+          </View>
         </View>
       </View>
     );
