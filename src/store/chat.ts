@@ -9,7 +9,7 @@ import { getChat, audioAsr } from "@/utils/http";
 //   }
 // })
 
-class ChatStore {
+export class ChatStore {
   audioInput: boolean;
   chatList: ChatItem[];
   constructor() {
@@ -70,4 +70,3 @@ export interface ChatItem {
 
 export default new ChatStore();
 
-export const ChatStoreType = ChatStore;

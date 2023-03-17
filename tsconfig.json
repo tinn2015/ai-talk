@@ -20,7 +20,12 @@
     "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "paths": {
+      "@/utils/*": ["src/utils/*"],
+      "@/store/*": ["src/store/*"],
+      "@/components/*": ["src/components/*"],
+    }
   },
   "include": ["./src", "./types"],
   "compileOnSave": true

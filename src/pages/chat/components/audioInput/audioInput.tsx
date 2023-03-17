@@ -2,13 +2,14 @@ import { Component, PropsWithChildren } from "react";
 import { View, Button, Text } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { observer, inject } from "mobx-react";
-import { ChatStoreType } from "@/store/chat";
+import { ChatStore } from "@/store/chat";
+import MusicWave from "@/components/MusicWave/musicWave"
 
 import "./audioInput.scss";
 
 type PageStateProps = {
   store: {
-    chatStore: ChatStoreType;
+    chatStore: ChatStore;
   };
   toggleInputType: () => void;
 };
@@ -24,7 +25,7 @@ class Index extends Component<PageStateProps, state> {
   constructor(props) {
     super(props);
     this.state = {
-      isTouchStart: false,
+      isTouchStart: true,
       recorderManager: null,
     };
   }
@@ -98,6 +99,7 @@ class Index extends Component<PageStateProps, state> {
             <View className='bottom-mask flex jc-c ai-c'>
               <View className='voice-icon'></View>
             </View>
+            <MusicWave></MusicWave>
           </View>
         )}
       </View>
