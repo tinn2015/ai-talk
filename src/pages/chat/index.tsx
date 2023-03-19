@@ -1,15 +1,15 @@
 import { Component, PropsWithChildren } from "react";
 import { View, Button, Text, Image } from "@tarojs/components";
+import { ChatStore, ChatItem } from "@/store/chat";
 import { observer, inject } from "mobx-react";
 import AudioInput from "./components/audioInput/audioInput";
 import TextInput from "./components/textInput/textInput";
-import { ChatStoreType, ChatItem } from "@/store/chat";
 
 import "./index.scss";
 
 type PageStateProps = {
   store: {
-    chatStore: ChatStoreType;
+    chatStore: ChatStore;
   };
 };
 

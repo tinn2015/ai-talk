@@ -28,6 +28,7 @@ const config = {
   alias: {
     '@/utils': resolve(__dirname, '..', 'src/utils'),
     '@/store': resolve(__dirname, '..', 'src/store'),
+    '@/components': resolve(__dirname, '..', 'src/components'),
   },
   mini: {
     postcss: {

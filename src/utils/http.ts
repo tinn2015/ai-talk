@@ -20,9 +20,9 @@ export const getChat = (options) => {
 };
 
 // 获取我的信息
-export const getMyInfo = (options) => {
+export const getMyInfo = () => {
   const url = baseUrl + "/chatbot/me/getdata";
-  return _request({ url, method: "GET" }, options);
+  return _request({ url, method: "GET" });
 };
 
 // 创建订单
@@ -68,16 +68,18 @@ export const audioAsr = (options: UploadAudioOptions) => {
   });
 };
 
-function _request(config: { url: string; method: Method }, options: any) {
+function _request(config: { url: string; method: Method }, options?: any) {
   return new Promise((resolve, reject) => {
+    const header = {
+      "content-type": "application/json",
+    }
+    const Authorization = Taro.getStorageSync("Authorization")
+    Authorization && (header['Authorization'] = Authorization)
     Taro.request({
       url: config.url,
       data: options,
       method: config.method || "GET",
-      header: {
-        "content-type": "application/json",
-        Authorization: Taro.getStorageSync("Authorization"),
-      },
+      header,
       success: (res) => {
         resolve(res.data);
       },
