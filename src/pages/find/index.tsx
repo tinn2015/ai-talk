@@ -1,63 +1,72 @@
-import { Component, PropsWithChildren } from 'react'
-import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
+import { Component, PropsWithChildren } from "react";
+import { View, Button, Text } from "@tarojs/components";
+import { observer, inject } from "mobx-react";
+import { getList } from "@/utils/http";
 
-import './index.scss'
+import "./index.scss";
 
 type PageStateProps = {
   store: {
     counterStore: {
-      counter: number,
-      increment: Function,
-      decrement: Function,
-      incrementAsync: Function
-    }
-  }
-}
+      counter: number;
+      increment: Function;
+      decrement: Function;
+      incrementAsync: Function;
+    };
+  };
+};
 
 interface Index {
   props: PageStateProps;
+  state: {
+    list: FindList[];
+  };
 }
 
-@inject('store')
+interface FindList {
+  id: string;
+  title: string;
+  read: number;
+}
+
+@inject("store")
 @observer
-class Index extends Component<PropsWithChildren> {
-  componentDidMount () { }
-
-  componentWillUnmount () { }
-
-  componentDidShow () { }
-
-  componentDidHide () { }
-
-  increment = () => {
-    const { counterStore } = this.props.store
-    counterStore.increment()
+class Index extends Component<PageStateProps> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      list: [],
+    };
   }
 
-  decrement = () => {
-    const { counterStore } = this.props.store
-    counterStore.decrement()
+  async componentDidMount() {
+    const list = await getList();
+    this.setState({
+      list,
+    });
   }
 
-  incrementAsync = () => {
-    const { counterStore } = this.props.store
-    counterStore.incrementAsync()
-  }
+  componentWillUnmount() {}
 
-  render () {
-    const { counterStore: { counter } } = this.props.store
+  componentDidShow() {}
+
+  componentDidHide() {}
+
+  render() {
+    const { list } = this.state;
     return (
-      <View className='index'>
-        <Button onClick={this.increment}>+</Button>
-        <Button onClick={this.decrement}>-</Button>
-        <Button onClick={this.incrementAsync}>Add Async</Button>
-        <Text>{counter}</Text>
-
-        <Button onTouchStart={() => {console.log('touch start')}} onTouchEnd={() => {console.log('touch end')}}>touch</Button>
+      <View className='find'>
+        {list.length > 0 &&
+          list.map((item: FindList) => {
+            return (
+              <View className='find-item' key={item.id}>
+                {item.title}
+              </View>
+            );
+          })}
       </View>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;
