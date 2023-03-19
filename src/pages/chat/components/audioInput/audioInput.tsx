@@ -3,7 +3,7 @@ import { View, Button, Text } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { observer, inject } from "mobx-react";
 import { ChatStore } from "@/store/chat";
-import MusicWave from "@/components/MusicWave/musicWave"
+import MusicWave from "@/components/MusicWave/musicWave";
 
 import "./audioInput.scss";
 
@@ -17,6 +17,7 @@ type PageStateProps = {
 interface state {
   isTouchStart: boolean;
   recorderManager: Taro.RecorderManager | null;
+  isCancle: boolean;
 }
 
 @inject("store")
@@ -27,6 +28,7 @@ class Index extends Component<PageStateProps, state> {
     this.state = {
       isTouchStart: true,
       recorderManager: null,
+      isCancle: false,
     };
   }
 
@@ -73,7 +75,7 @@ class Index extends Component<PageStateProps, state> {
 
   render() {
     const { toggleInputType } = this.props;
-    const { isTouchStart } = this.state;
+    const { isTouchStart, isCancle } = this.state;
     return (
       <View className='audio-input flex jc-sb ai-c'>
         <View className='audio-icon' onClick={toggleInputType}></View>
@@ -99,7 +101,9 @@ class Index extends Component<PageStateProps, state> {
             <View className='bottom-mask flex jc-c ai-c'>
               <View className='voice-icon'></View>
             </View>
-            <MusicWave></MusicWave>
+            <View className='music-wave-box'>
+              <MusicWave status={isCancle}></MusicWave>
+            </View>
           </View>
         )}
       </View>

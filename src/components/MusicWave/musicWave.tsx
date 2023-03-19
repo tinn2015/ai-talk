@@ -5,6 +5,7 @@ import { observer, inject } from "mobx-react";
 import "./musicWave.scss";
 
 type PageStateProps = {
+  status: boolean;
 };
 
 interface Index {
@@ -24,14 +25,18 @@ class Index extends Component<PageStateProps> {
 
   render() {
     return (
-      <View className='music-wave flex'>
-        <View className='item one music'></View> 
-        <View className='item two music'></View>
-        <View className='item three music'></View>
-        <View className='item four music'></View> 
-        <View className='item five music'></View> 
-        <View className='item six music'></View> 
-        <View className='item seven music'></View>      
+      <View
+        className={`music-wave flex music ai-c jc-c ${
+          this.props.status ? "is-cancle" : ""
+        }`}
+      >
+        <View className='item one'></View>
+        <View className='item two'></View>
+        <View className='item three'></View>
+        <View className='item four'></View>
+        <View className='item five'></View>
+        <View className='item six'></View>
+        <View className='item seven'></View>
       </View>
     );
   }
